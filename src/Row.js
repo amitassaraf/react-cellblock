@@ -20,6 +20,7 @@ import {forceContext} from './util/handleStaleContext';
 
 @forceContext // apply patch
 class Row extends Component {
+
   getChildContext() {
     return {
       cellblock: true
@@ -32,9 +33,11 @@ class Row extends Component {
     const c = cellblockGet('columnWidth');
     const g = cellblockGet('gutterWidth');
 
-    const style = cellblock ? null : {
-      maxWidth: (v * c) + (v * g)
-    };
+    const style = this.props.style || {};
+
+    if (!cellblock) {
+      style.maxWidth = (v * c) + (v * g)
+    }
 
     return (
       <div className={classnames(ROW, this.props.className)} style={style}>
@@ -48,6 +51,7 @@ Row.childContextTypes = gridContext;
 Row.contextTypes = gridContext;
 Row.propTypes = {
   children: PropTypes.any,
-  className: PropTypes.string
+  className: PropTypes.string,
+  style: PropTypes.object
 }
 export default Row;

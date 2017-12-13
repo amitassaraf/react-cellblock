@@ -113,7 +113,7 @@ class Grid extends Component {
     const uniqueClass = `${className} ${gridClass}`;
     const breakPointRange = [breakpoint, this.getMaxBreatPoint(breakpoint)];
     return (
-      <Column isRoot viewport={breakPointRange} breakCount={breakCount} className={uniqueClass}>
+      <Column isRoot viewport={breakPointRange} breakCount={breakCount} className={uniqueClass} style={this.props.style}>
         <Style ctx={gridClass} gutter={gutterWidth}/>
         {children}
       </Column>
@@ -130,7 +130,8 @@ Grid.propTypes = {
   flexible: PropTypes.oneOfType([PropTypes.bool, PropTypes.array]),
   gutterWidth: PropTypes.number,
   initialBreakpoint: validBreakpoint,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  style: PropTypes.object
 }
 Grid.defaultProps = {
   onChange() {},

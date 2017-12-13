@@ -49,7 +49,7 @@ class Column extends Component {
   render() {
     if (this.props.isRoot) {
       return (
-        <div className={classnames(GRID, this.props.className)}>
+        <div className={classnames(GRID, this.props.className)} style={this.props.style}>
           {this.props.children}
         </div>
       );
@@ -58,7 +58,7 @@ class Column extends Component {
     const className = classnames(COL, this.props.className);
     const width = this.grid.getFraction();
     const {offset}= this.props;
-    const style = {};
+    const style = this.props.style;
 
     if (offset) style.marginLeft = fractionToPercent(offset);
     style.width = decimalToPercent(width[0] / width[1]);
@@ -89,6 +89,7 @@ Column.propTypes = {
   isRoot: PropTypes.bool,
   offset: gridFraction,
   viewport: PropTypes.array,
-  width: gridFraction
+  width: gridFraction,
+  style: PropTypes.object
 }
 export default Column;
