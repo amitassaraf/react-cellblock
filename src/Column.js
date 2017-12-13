@@ -58,7 +58,7 @@ class Column extends Component {
     const className = classnames(COL, this.props.className);
     const width = this.grid.getFraction();
     const {offset}= this.props;
-    const style = this.props.style;
+    const style = this.props.style || {};
 
     if (offset) style.marginLeft = fractionToPercent(offset);
     style.width = decimalToPercent(width[0] / width[1]);
